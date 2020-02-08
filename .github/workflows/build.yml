@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        target_arch: [aarch64, arm, i686, x86_64]
+        target_arch: [x86_64] # aarch64, arm, i686
 
     steps:
       - uses: actions/checkout@v2
@@ -20,10 +20,9 @@ jobs:
         run: git clone https://github.com/termux/termux-packages.git
 
       - name: Add proot-portable package
-        working-directory: ./termux-packages
         run: |
-          mkdir packages/proot-portable
-          cp build.sh packages/proot-portable
+          mkdir termux-packages/packages/proot-portable
+          cp build.sh termux-packages/packages/proot-portable
 
       - name: Build
         working-directory: ./termux-packages
