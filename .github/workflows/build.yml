@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: proot-${{ matrix.target_arch }}
-          path: proot
+          path: termux-packages/proot
 
   pages:
     needs: build
