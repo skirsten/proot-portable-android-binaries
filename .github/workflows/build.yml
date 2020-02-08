@@ -49,9 +49,10 @@ jobs:
           name: proot-x86_64
           path: public/x86_64/proot
 
-      - name: Deploy Pages
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+      - name: Deploy
+        uses: crazy-max/ghaction-github-pages@v1
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: public
+          target_branch: gh-pages
+          build_dir: public
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
