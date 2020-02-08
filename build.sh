@@ -26,5 +26,5 @@ termux_step_make_install() {
 	make install
 
   $STRIP proot
-	cp proot $HOME
+	cp proot /home/builder/termux-packages
 }
