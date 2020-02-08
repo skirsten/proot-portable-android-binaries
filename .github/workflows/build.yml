@@ -24,12 +24,31 @@ jobs:
           mkdir termux-packages/packages/proot-portable
           cp build.sh termux-packages/packages/proot-portable
 
-      - name: Build
+      - name: Build proot-${{ matrix.target_arch }}
         working-directory: ./termux-packages
         run: ./scripts/run-docker.sh ./build-package.sh -a ${{ matrix.target_arch }} -I proot-portable
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v1.0.0
+      - name: Upload proot-${{ matrix.target_arch }}
+        uses: actions/upload-artifact@v1
         with:
-          name: binary
-          path: ./termux-packages/proot
+          name: proot-${{ matrix.target_arch }}
+          path: proot
+
+  pages:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make dirs
+        cmd: mkdir public/x86_64
+
+      - name: Download proot-x86_64
+        uses: actions/download-artifact@v1
+        with:
+          name: proot-x86_64
+          path: public/x86_64/proot
+
+      - name: Deploy Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./public
