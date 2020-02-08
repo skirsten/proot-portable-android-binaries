@@ -1,2 +1,3 @@
-# proot-portable-android-binaries
-Portable PRoot Android Binaries
+# Portable PRoot Android Binaries
+
+![CI](https://github.com/skirsten/proot-portable-android-binaries/workflows/CI/badge.svg)
