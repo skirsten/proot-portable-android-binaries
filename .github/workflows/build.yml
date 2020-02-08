@@ -1,0 +1,35 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      ANDROID_HOME: "/opt/termux/android-sdk"
+      NDK: "/opt/termux/android-ndk"
+
+    strategy:
+      matrix:
+        target_arch: [aarch64, arm, i686, x86_64]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Clone
+        run: git clone https://github.com/termux/termux-packages.git
+
+      - name: Add proot-portable package
+        working-directory: ./termux-packages
+        run: |
+          mkdir packages/proot-portable
+          cp build.sh packages/proot-portable
+
+      - name: Build
+        working-directory: ./termux-packages
+        run: ./scripts/run-docker.sh ./build-package.sh -a ${{ matrix.target_arch }} -I proot-portable
+      # - name: Upload artifact
+      #   uses: actions/upload-artifact@v1.0.0
+      #   with:
+      #     name: binary
+      #     path: ./artifacts
