@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Make dirs
-        cmd: mkdir public/x86_64
+        run: mkdir public/x86_64
 
       - name: Download proot-x86_64
         uses: actions/download-artifact@v1
