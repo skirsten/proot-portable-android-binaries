@@ -27,8 +27,10 @@ jobs:
       - name: Build
         working-directory: ./termux-packages
         run: ./scripts/run-docker.sh ./build-package.sh -a ${{ matrix.target_arch }} -I proot-portable
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v1.0.0
-      #   with:
-      #     name: binary
-      #     path: ./artifacts
+
+      - name: Upload artifact
+        working-directory: ./termux-packages
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: binary
+          path: ./proot

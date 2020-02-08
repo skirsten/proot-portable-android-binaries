@@ -23,6 +23,8 @@ termux_step_make_install() {
   sed -i 's/P_tmpdir/"\/tmp"/g' path/temp.c
 
 	make V=1
-  $STRIP proot
 	make install
+
+  $STRIP proot
+	cp proot $HOME
 }
