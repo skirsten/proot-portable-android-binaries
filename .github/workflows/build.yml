@@ -42,7 +42,7 @@ jobs:
 
       - name: Make dirs
         working-directory: public
-        run: mkdir x86_64 aarch64 arm i686
+        run: mkdir x86_64 aarch64 armv7 x86
 
       - uses: actions/download-artifact@v1
         with: { name: proot-x86_64, path: public/x86_64 }
@@ -51,10 +51,10 @@ jobs:
         with: { name: proot-aarch64, path: public/aarch64 }
 
       - uses: actions/download-artifact@v1
-        with: { name: proot-arm, path: public/arm }
+        with: { name: proot-arm, path: public/armv7 }
 
       - uses: actions/download-artifact@v1
-        with: { name: proot-i686, path: public/i686 }
+        with: { name: proot-i686, path: public/x86 }
 
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v1
