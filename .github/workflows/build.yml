@@ -44,16 +44,16 @@ jobs:
         working-directory: public
         run: mkdir x86_64 aarch64 armv7 x86
 
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with: { name: proot-x86_64, path: public/x86_64 }
 
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with: { name: proot-aarch64, path: public/aarch64 }
 
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with: { name: proot-arm, path: public/armv7 }
 
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with: { name: proot-i686, path: public/x86 }
 
       - name: Deploy
